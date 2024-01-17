@@ -41,8 +41,11 @@
         "symfony/ux-turbo": "^2.13",
         "symfony/validator": "6.4.*",
         "symfony/web-link": "6.4.*",
+        "symfony/workflow": "6.4.*",
         "symfony/yaml": "6.4.*",
+        "twig/cssinliner-extra": "^3",
         "twig/extra-bundle": "^2.12|^3.0",
+        "twig/inky-extra": "^3",
         "twig/intl-extra": "^3.8",
         "twig/twig": "^2.12|^3.0"
     },
@@ -84,6 +87,16 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "tests": [
+            "symfony php bin/phpunit"
+        ],
+        "start": [
+            "symfony server:start -d",
+            "symfony run -d --watch=config,src,templates,vendor symfony console messenger:consume async -vv"
+        ],
+        "stop": [
+            "symfony server:stop"
         ]
     },
     "conflict": {
@@ -91,16 +104,20 @@
     },
     "extra": {
         "symfony": {
-            "allow-contrib": false,
+            "allow-contrib": true,
             "require": "6.4.*"
         }
     },
     "require-dev": {
+        "dama/doctrine-test-bundle": "^7",
+        "dbrekelmans/bdi": "^1.1",
+        "doctrine/doctrine-fixtures-bundle": "^3.5",
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "6.4.*",
         "symfony/css-selector": "6.4.*",
         "symfony/debug-bundle": "6.4.*",
         "symfony/maker-bundle": "^1.0",
+        "symfony/panther": "^2.1",
         "symfony/phpunit-bridge": "^7.0",
         "symfony/stopwatch": "6.4.*",
         "symfony/web-profiler-bundle": "6.4.*"
